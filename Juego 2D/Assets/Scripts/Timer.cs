@@ -85,4 +85,5 @@ public class Timer : MonoBehaviour
     public float StartTime { get => startTime; set => startTime = value; }
     public float StopTime { get => stopTime; set => stopTime = value; }
     public float TimerTime { get => timerTime; set => timerTime = value; }
+
 }
