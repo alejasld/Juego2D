@@ -2,7 +2,6 @@
 using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-
 public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D _Rigidbody2D;
@@ -14,12 +13,45 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded;
 
     [Header("Escena a cargar cuando toca la bandera")]
-    public string nextSceneName; // ← Nombre de la siguiente escena
+    public string nextSceneName;
+
+    private static bool playerExists = false;
 
     void Start()
     {
         _Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if (!playerExists)
+        {
+            DontDestroyOnLoad(gameObject);
+            playerExists = true;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Si vuelve a la escena 1, destruir el jugador
+        if (scene.buildIndex == 0)
+        {
+            playerExists = false;
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            Destroy(gameObject);
+            return;
+        }
+
+        // Buscar un SpawnPoint en la nueva escena y mover al jugador allí
+        GameObject spawn = GameObject.Find("SpawnPoint");
+        if (spawn != null)
+        {
+            transform.position = spawn.transform.position;
+        }
     }
 
     void Update()
@@ -29,14 +61,12 @@ public class PlayerMove : MonoBehaviour
         float currentSpeed = Mathf.Abs(_Rigidbody2D.linearVelocity.x);
         animator.SetFloat("Speed", currentSpeed);
 
-        // Saltar
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             _Rigidbody2D.linearVelocity = new Vector2(_Rigidbody2D.linearVelocity.x, jumpForce);
-            animator.SetBool("isJumping", true); // Activar animación de salto
+            animator.SetBool("isJumping", true);
         }
 
-        // Si está en el suelo, desactivar animación de salto
         if (isGrounded)
         {
             animator.SetBool("isJumping", false);
@@ -68,7 +98,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.CompareTag("Finish"))
         {
-            // Cargar la escena indicada en el Inspector
             if (!string.IsNullOrEmpty(nextSceneName))
             {
                 SceneManager.LoadScene(nextSceneName);
