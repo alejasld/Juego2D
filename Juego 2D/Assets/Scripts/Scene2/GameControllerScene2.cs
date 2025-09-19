@@ -5,19 +5,11 @@ public class GameControllerScene2 : MonoBehaviour
     public Timer tiempoEscena;
 
     [Header("Jugador")]
-    public GameObject playerPrefab;      // Prefab del jugador
-    public Transform spawnPoint;         // Punto de aparición del jugador
+    public GameObject playerPrefab;
+    public Transform spawnPoint;
 
-    [Header("Items coleccionables")]
-    public GameObject applePrefab;
-    public GameObject bananaPrefab;
-    public int maxApples = 5;
-    public int maxBananas = 7;
-
-    [Header("Zona de spawn")]
-    public Transform leftLimit;
-    public Transform rightLimit;
-    public float yPosition = 0.5f; // Altura donde se colocarán los ítems
+    [Header("Spawner de ítems")]
+    public ItemSpawner itemSpawner; // referencia al script spawner
 
     void Start()
     {
@@ -33,18 +25,14 @@ public class GameControllerScene2 : MonoBehaviour
             existingPlayer.transform.position = spawnPoint.position;
         }
 
-        // --- Generar coleccionables ---
-        SpawnItems(applePrefab, maxApples);
-        SpawnItems(bananaPrefab, maxBananas);
-    }
-
-    void SpawnItems(GameObject itemPrefab, int maxAmount)
-    {
-        for (int i = 0; i < maxAmount; i++)
+        // --- Generar frutas ---
+        if (itemSpawner != null)
         {
-            float randomX = Random.Range(leftLimit.position.x, rightLimit.position.x);
-            Vector2 spawnPos = new Vector2(randomX, yPosition);
-            Instantiate(itemPrefab, spawnPos, Quaternion.identity);
+            itemSpawner.SpawnFruits();
+        }
+        else
+        {
+            Debug.LogWarning("No se asignó el ItemSpawner en GameControllerScene2.");
         }
     }
 
