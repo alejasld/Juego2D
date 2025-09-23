@@ -1,36 +1,33 @@
 using UnityEngine;
 
-public class CollectibleItem : MonoBehaviour
+public class CollectItem : MonoBehaviour
 {
-    public enum ItemType{ Apple, Banana}
-    //[Header ("Opciones de items")]
+    public string nameItem;   // Nombre del ítem (ej: Manzana, Banana)
+    public int itemValue = 1; // Valor en puntos
 
-    public ItemType type=ItemType.Apple;
-    public int itemValue=1;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public AudioClip itemSound;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Player")) return;
-
-        switch (type)
+        if (collision.CompareTag("Player"))
         {
-            case ItemType.Apple:
-                GameManager.Instance.TotalApple(itemValue); break;
+            Debug.Log("El jugador recogió: " + nameItem + " (+" + itemValue + ")");
 
-            case ItemType.Banana:
-                GameManager.Instance.TotalBanana(itemValue); break;
+            if (nameItem == "Apple")
+            {
+                GameManager.Instance.TotalApple(itemValue);
+            }
+            else if (nameItem == "Banana")
+            {
+                GameManager.Instance.TotalBanana(itemValue);
+            }
+            if (itemSound != null)
+            {
+                AudioSource.PlayClipAtPoint(itemSound, transform.position);
+
+            }
+
+
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);    
     }
 }

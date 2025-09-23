@@ -5,34 +5,15 @@ public class GameControllerScene2 : MonoBehaviour
     public Timer tiempoEscena;
 
     [Header("Jugador")]
-    public GameObject playerPrefab;
     public Transform spawnPoint;
-
-    [Header("Spawner de ítems")]
-    public ItemSpawner itemSpawner; // referencia al script spawner
 
     void Start()
     {
-        // --- Instanciar o mover al jugador ---
         GameObject existingPlayer = GameObject.FindWithTag("Player");
 
-        if (existingPlayer == null)
-        {
-            Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-        }
-        else
+        if (existingPlayer != null)
         {
             existingPlayer.transform.position = spawnPoint.position;
-        }
-
-        // --- Generar frutas ---
-        if (itemSpawner != null)
-        {
-            itemSpawner.SpawnFruits();
-        }
-        else
-        {
-            Debug.LogWarning("No se asignó el ItemSpawner en GameControllerScene2.");
         }
     }
 

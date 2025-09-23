@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        globalTime += Time.deltaTime;
     }
 
     public void TotalTime(float timeScene)
@@ -42,14 +43,27 @@ public class GameManager : MonoBehaviour
     public void TotalApple(int apple)
     {
         scoreApple += apple;
+        Debug.Log("Manzanas recogidas: " + scoreApple);
     }
 
     public void TotalBanana(int banana)
     {
         scoreBanana += banana;
+        Debug.Log("Bananas recogidas: " + scoreBanana);
+
     }
+
+  
 
     public float GlobalTime { get => globalTime; set => globalTime = value; }
     public int ScoreApple { get => scoreApple; set => scoreApple = value; }
     public int ScoreBanana { get => scoreBanana; set => scoreBanana = value; }
+
+
+
 }
+
+
+
+
+

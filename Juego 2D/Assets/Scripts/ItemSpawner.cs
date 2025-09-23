@@ -1,35 +1,42 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [Header("Prefabs de ítems")]
     public GameObject applePrefab;
     public GameObject bananaPrefab;
 
-    [Header("Cantidad máxima")]
     public int maxApples = 5;
     public int maxBananas = 7;
 
-    [Header("Zona de spawn")]
-    public Transform leftLimit;
-    public Transform rightLimit;
-    public float yPosition = 0.5f; // altura de spawn
+    public List<GameObject> puntosDisponibles = new List<GameObject>();
 
-    // Método público para generar las frutas
-    public void SpawnFruits()
+    void Start()
     {
-        SpawnItems(applePrefab, maxApples);
-        SpawnItems(bananaPrefab, maxBananas);
+        // Generar apples
+        int cantidadApples = Random.Range(1, maxApples + 1);
+        for (int i = 0; i < cantidadApples; i++)
+        {
+            GenerarItem(applePrefab);
+        }
+
+        // Generar bananas
+        int cantidadBananas = Random.Range(1, maxBananas + 1);
+        for (int i = 0; i < cantidadBananas; i++)
+        {
+            GenerarItem(bananaPrefab);
+        }
     }
 
-    // Método privado para instanciar
-    private void SpawnItems(GameObject itemPrefab, int maxAmount)
+    void GenerarItem(GameObject itemPrefab)
     {
-        for (int i = 0; i < maxAmount; i++)
-        {
-            float randomX = Random.Range(leftLimit.position.x, rightLimit.position.x);
-            Vector2 spawnPos = new Vector2(randomX, yPosition);
-            Instantiate(itemPrefab, spawnPos, Quaternion.identity);
-        }
+        if (puntosDisponibles.Count == 0) return;
+
+        int index = Random.Range(0, puntosDisponibles.Count);
+        GameObject punto = puntosDisponibles[index];
+
+        Instantiate(itemPrefab, punto.transform.position, Quaternion.identity);
+
+        puntosDisponibles.RemoveAt(index);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3479612808378919479}
   - component: {fileID: 5545015907210126537}
   - component: {fileID: 6883729067691696200}
-  - component: {fileID: 4881408922267814687}
+  - component: {fileID: 8914689303852905593}
   m_Layer: 0
   m_Name: Bananas_0
   m_TagString: Untagged
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5087008382441907092}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.14410973, y: 0.14163256}
   m_EdgeRadius: 0
---- !u!114 &4881408922267814687
+--- !u!114 &8914689303852905593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,5 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be855f146e1828841b25ccbc380fe5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  itemValue: 7
+  nameItem: Banana
+  itemValue: 1
+  itemSound: {fileID: 8300000, guid: 009f3c7e1f7af1a468fa449788c20746, type: 3}

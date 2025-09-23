@@ -98,13 +98,15 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.CompareTag("Finish"))
         {
-            if (!string.IsNullOrEmpty(nextSceneName))
+            string currentScene = SceneManager.GetActiveScene().name;
+
+            if (currentScene == "Escena1")
             {
-                SceneManager.LoadScene(nextSceneName);
+                SceneManager.LoadScene("Escena2");
             }
-            else
+            else if (currentScene == "Escena2")
             {
-                Debug.LogWarning("No se asignó ninguna escena en 'nextSceneName'");
+                SceneManager.LoadScene("Final");
             }
         }
     }
