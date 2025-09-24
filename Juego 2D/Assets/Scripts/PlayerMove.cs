@@ -3,70 +3,69 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
-    private Rigidbody2D _rigidbody2D;
+    private Rigidbody2D rb;
     private Animator animator;
+    private bool isGrounded = false;
 
-    float horizontal;
-    public float speed = 3f;
-    public float jumpForce = 3f;
-    private bool isGrounded;
+    public float speed = 5f;
+    public float jumpForce = 5f;
 
-    void Start()
+    [Header("Panel Final")]
+    public PanelFinal panelFinal;
+
+    private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        float currentSpeed = Mathf.Abs(_rigidbody2D.linearVelocity.x);
-        animator.SetFloat("Speed", currentSpeed);
+        float horizontal = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
-            _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpForce);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            isGrounded = false;
             animator.SetBool("isJumping", true);
         }
-
-        if (isGrounded)
-            animator.SetBool("isJumping", false);
-    }
-
-    void FixedUpdate()
-    {
-        _rigidbody2D.linearVelocity = new Vector2(horizontal * speed, _rigidbody2D.linearVelocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Finish"))
         {
-            string currentScene = SceneManager.GetActiveScene().name;
+            isGrounded = true;
+            animator.SetBool("isJumping", false);
+        }
+    }
 
-            if (currentScene == "Escena1")
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // Bandera de la primera escena
+        if (other.CompareTag("Finish1") && currentScene == "Escena1")
+        {
+            SceneManager.LoadScene("Escena2");
+        }
+
+        // Bandera de la segunda escena
+        else if (other.CompareTag("Finish2"))
+        {
+            if (panelFinal != null)
             {
-                // Destruir jugador de Escena1
-                Destroy(gameObject);
-                // Cargar Escena2 donde habrá un nuevo jugador
-                SceneManager.LoadScene("Escena2");
+                panelFinal.ShowFinalPanel(
+                    GameManager.Instance.ScoreApple,
+                    GameManager.Instance.ScoreBanana,
+                    GameManager.Instance.GlobalTime
+                );
             }
-            else if (currentScene == "Escena2")
-            {
-                SceneManager.LoadScene("Final");
-            }
+
+            Time.timeScale = 0f;
         }
     }
 }

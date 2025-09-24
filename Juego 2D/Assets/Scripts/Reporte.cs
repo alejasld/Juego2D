@@ -1,45 +1,40 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.IO;
+
+[System.Serializable]
+public class ReportData
+{
+    public int apples;
+    public int bananas;
+    public int total;
+    public float time;
+}
 
 public class Reporte : MonoBehaviour
 {
-    [System.Serializable]
-    public class GameData
+    public void SaveReport()
     {
-        public float totalTime;
-        public int totalApples;
-        public int totalBananas;
-    }
-
-    // Este método lo asignas al botón en la escena final
-    public void GuardarReporte()
-    {
-        if (GameManager.Instance == null)
+        ReportData data = new ReportData
         {
-            Debug.LogError("No existe GameManager en memoria.");
-            return;
-        }
-
-        GameData data = new GameData
-        {
-            totalTime = GameManager.Instance.GlobalTime,
-            totalApples = GameManager.Instance.ScoreApple,
-            totalBananas = GameManager.Instance.ScoreBanana
+            apples = GameManager.Instance.ScoreApple,
+            bananas = GameManager.Instance.ScoreBanana,
+            total = GameManager.Instance.ScoreApple + GameManager.Instance.ScoreBanana,
+            time = GameManager.Instance.GlobalTime
         };
 
         string json = JsonUtility.ToJson(data, true);
 
-        // Carpeta StreamingAssets
+        // âœ… Usamos la ruta oficial de Unity para StreamingAssets
         string folderPath = Application.streamingAssetsPath;
+
         if (!Directory.Exists(folderPath))
         {
             Directory.CreateDirectory(folderPath);
         }
 
-        // Ruta del archivo
-        string filePath = Path.Combine(folderPath, "gameData.json");
+        string filePath = Path.Combine(folderPath, "reporte.json");
         File.WriteAllText(filePath, json);
 
-        Debug.Log(" Reporte guardado en: " + filePath);
+        Debug.Log($" Reporte guardado en: {filePath}");
     }
 }

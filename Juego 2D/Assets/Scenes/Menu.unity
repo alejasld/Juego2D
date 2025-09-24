@@ -424,6 +424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d904c7d2c5ca4594483d82ea0fc54cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appleText: {fileID: 0}
+  bananaText: {fileID: 0}
 --- !u!4 &747775610
 Transform:
   m_ObjectHideFlags: 0
@@ -1294,7 +1296,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a3af8a4596fbb0948938d4dba6122271, type: 3}
   m_Resource: {fileID: 8300000, guid: a3af8a4596fbb0948938d4dba6122271, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.508
+  m_Volume: 0.225
   m_Pitch: 1
   Loop: 1
   Mute: 0

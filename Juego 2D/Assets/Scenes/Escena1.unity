@@ -4195,8 +4195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 99.01008, y: 0}
-  m_SizeDelta: {x: -198.99, y: 0}
+  m_AnchoredPosition: {x: 111.09, y: 0}
+  m_SizeDelta: {x: -223.16, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632460101
 MonoBehaviour:
@@ -4409,8 +4409,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -96.862, y: 0}
-  m_SizeDelta: {x: -193.725, y: 0}
+  m_AnchoredPosition: {x: -106.81826, y: 0}
+  m_SizeDelta: {x: -213.6375, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &854899085
 MonoBehaviour:
@@ -4684,7 +4684,7 @@ GameObject:
   - component: {fileID: 1516039545}
   m_Layer: 0
   m_Name: Checkpoint (Flag Idle)(64x64)_2
-  m_TagString: Finish
+  m_TagString: Finish1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5863,6 +5863,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3016684089870656556, guid: dd5f94fbc81c6e746a9d87d608d49bff, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: cca7a969039937d468aa2052e01cb490, type: 3}
+    - target: {fileID: 3016684089870656556, guid: dd5f94fbc81c6e746a9d87d608d49bff, type: 3}
+      propertyPath: itemSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 067fe14945f161648a0b7c31815b71ab, type: 3}
     - target: {fileID: 5036516190124251203, guid: dd5f94fbc81c6e746a9d87d608d49bff, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -5910,6 +5918,10 @@ PrefabInstance:
     - target: {fileID: 6304541492040673302, guid: dd5f94fbc81c6e746a9d87d608d49bff, type: 3}
       propertyPath: m_Name
       value: Apple_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112126417097205650, guid: dd5f94fbc81c6e746a9d87d608d49bff, type: 3}
+      propertyPath: m_BodyType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6114,10 +6126,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bananas_0
       objectReference: {fileID: 0}
+    - target: {fileID: 5545015907210126537, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6883729067691696200, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8914689303852905593, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914689303852905593, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 067fe14945f161648a0b7c31815b71ab, type: 3}
+    - target: {fileID: 8914689303852905593, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
+      propertyPath: itemSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cca7a969039937d468aa2052e01cb490, type: 3}
     - target: {fileID: 8914689303852905593, guid: 9ce4622f48e8b3f47a9d06c1af7329fb, type: 3}
       propertyPath: itemValue
       value: 7

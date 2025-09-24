@@ -3,36 +3,25 @@ using TMPro;
 
 public class GameControllerScene1 : MonoBehaviour
 {
-
     public Timer tiempoEscena;
-    public TMPro.TextMeshProUGUI textApple;
-    public TMPro.TextMeshProUGUI textBanana;
+    public TextMeshProUGUI textApple;
+    public TextMeshProUGUI textBanana;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance !=null)
+        if (GameManager.Instance != null)
         {
-            int apples= GameManager.Instance.ScoreApple;
-            int bananas= GameManager.Instance.ScoreBanana;
-
-            textApple.text= apples.ToString();
-            textApple.text = bananas.ToString();
+            textApple.text = GameManager.Instance.ScoreApple.ToString();
+            textBanana.text = GameManager.Instance.ScoreBanana.ToString();
         }
     }
 
     public void AddTime()
     {
-        tiempoEscena.TimerStop();   
-        float getTimeScene= tiempoEscena.StopTime;
+        tiempoEscena.TimerStop();
+        float getTimeScene = tiempoEscena.StopTime;
 
-        GameManager.Instance.TotalTime(getTimeScene);
+        GameManager.Instance.AddTime(getTimeScene);
 
         Debug.Log("Tiempo Escena 1 " + GameManager.Instance.GlobalTime);
     }

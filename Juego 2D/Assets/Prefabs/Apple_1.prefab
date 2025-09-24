@@ -98,7 +98,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6304541492040673302}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -175,6 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be855f146e1828841b25ccbc380fe5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameItem: Apple
+  type: 0
   itemValue: 5
-  itemSound: {fileID: 8300000, guid: f90813d98e79d4940b7d6b1daef5744c, type: 3}
+  sound: {fileID: 8300000, guid: cca7a969039937d468aa2052e01cb490, type: 3}
