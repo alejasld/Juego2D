@@ -176,5 +176,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameItem: Banana
-  itemValue: 1
+  itemValue: 7
   itemSound: {fileID: 8300000, guid: 009f3c7e1f7af1a468fa449788c20746, type: 3}
