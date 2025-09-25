@@ -16,18 +16,9 @@ public class PanelFinal : MonoBehaviour
 
     private void Start()
     {
-        endPanel.SetActive(false);
-    }
-    private void OnEnable()
-    {
-        if (!panelShown)
-        {
-            int apples = GameManager.Instance.ScoreApple;
-            int bananas = GameManager.Instance.ScoreBanana;
-            float totalTime = GameManager.Instance.GlobalTime;
-
-            ShowFinalPanel(apples, bananas, totalTime);
-        }
+      
+        if (endPanel != null)
+            endPanel.SetActive(false);
     }
 
     public void ShowFinalPanel(int apples, int bananas, float totalTime)
@@ -35,14 +26,14 @@ public class PanelFinal : MonoBehaviour
         if (panelShown) return;
 
         if (endPanel != null)
-           
+            endPanel.SetActive(true);
 
-        finalAppleText.text = $"Score       : {apples}";
-        finalBananaText.text = $"Score       : {bananas}";
-        finalTotalText.text = $"Total: {apples + bananas}";
-        finalTimeText.text =  FormatTime(totalTime);
+        finalAppleText.text = $"Score       :  {apples}";
+        finalBananaText.text = $"Score       :  {bananas}";
+        finalTotalText.text = $"Total Score: {apples + bananas}";
+        finalTimeText.text = FormatTime(totalTime);
 
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; 
         panelShown = true;
     }
 

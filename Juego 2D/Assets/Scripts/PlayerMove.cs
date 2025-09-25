@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Bandera de la segunda escena
-        else if (other.CompareTag("Finish2"))
+        else if (other.CompareTag("Finish2") && currentScene == "Escena2")
         {
             if (panelFinal != null)
             {

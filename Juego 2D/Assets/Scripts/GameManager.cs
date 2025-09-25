@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         scoreBanana += value;
     }
 
-    // Propiedades públicas
+   
     public float GlobalTime { get => globalTime; }
     public int ScoreApple { get => scoreApple; }
     public int ScoreBanana { get => scoreBanana; }

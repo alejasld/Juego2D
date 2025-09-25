@@ -24,7 +24,7 @@ public class Reporte : MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
 
-        // ✅ Usamos la ruta oficial de Unity para StreamingAssets
+    
         string folderPath = Application.streamingAssetsPath;
 
         if (!Directory.Exists(folderPath))
